@@ -1,27 +1,41 @@
-# FSM de Llenado y Sellado de Botellas
+# ALU de 3 bits – AlejandroPazG
 
-Este diseño implementa una solución automatizada para el llenado y sellado de botellas utilizando dos máquinas de estados finitos (FSMs):
+Este proyecto implementa una Unidad Aritmético-Lógica (ALU) de 3 bits en Verilog, adaptada para la plataforma **TinyTapeout**. La ALU permite realizar cuatro operaciones fundamentales:
 
-- **FSM tipo Moore**: Controla el proceso de llenado.
-- **FSM tipo Mealy**: Controla el proceso de sellado.
+- `00` → Suma (`A + B`)
+- `01` → Resta (`A - B`)
+- `10` → AND (`A & B`)
+- `11` → OR (`A | B`)
 
-Ambas FSMs están sincronizadas por un prescaler que genera una señal de reloj lenta desde una entrada de 100 MHz, permitiendo una visualización clara de los estados en hardware.
+---
 
-## Entradas
+##  Entradas (`ui_in`)
 
-- `ui[0]`: Señal `startfill` – Inicia el llenado.
-- `ui[1]`: Señal `productook` – Indica que hay producto disponible para sellar.
+- `ui_in[2:0]` → Operando A (3 bits)
+- `ui_in[5:3]` → Operando B (3 bits)
+- `ui_in[7:6]` → Selector de operación (2 bits)
 
-## Salidas
+---
 
-- `uo[0]`: `llenando` – LED encendido durante el llenado.
-- `uo[1]`: `sellando` – LED encendido durante el sellado.
-- `uo[2]`: `LED_sello` – LED encendido cuando se completa el sellado.
-- `uo[3:5]`: `state_filler` – Estado de la FSM de llenado (3 bits).
-- `uo[6:7]`: `state_sealer` – Bits menos significativos del estado de la FSM de sellado (faltaría uno si fueran 3 bits).
+##  Salidas (`uo_out`)
 
-## Autor
+- `uo_out[2:0]` → Resultado (Y)
+- `uo_out[7]` → Carry-out (Cout)
+- `uo_out[6:3]` → No utilizados (valor 0)
 
-**AlejandroPazG**
+---
 
-Este diseño fue realizado como parte del proyecto de evaluación final para TinyTapeout utilizando el nodo Sky130.
+##  Módulos internos
+
+- `alu_top_3bit.v`: Módulo principal de la ALU
+- `addsub_3bit.v`: Suma/resta controlada por 1 bit
+- `and_3bit.v`: Operación lógica AND
+- `or_3bit.v`: Operación lógica OR
+- `prefix_adder_3bit.v`: Sumador base 
+- `tt_um_alu_top.v`: interfaz estándar para TinyTapeout
+
+---
+
+##  Autor
+
+**Alejandro Paz G.**  
