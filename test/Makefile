@@ -5,7 +5,7 @@
 SIM ?= icarus
 TOPLEVEL_LANG ?= verilog
 SRC_DIR = $(PWD)/../src
-PROJECT_SOURCES = fsm_mealy_sealer.v fsm_moore_filler.v prescaler_clk.v tt_um_fsm_top_AlejandroPazG.v
+PROJECT_SOURCES = addsub_3bit.v alu_top_3bit.v and_3bit.v or_3bit.v prefix_adder_3bit.v tt_um_top_AlejandroPazG.v
 
 ifneq ($(GATES),yes)
 
