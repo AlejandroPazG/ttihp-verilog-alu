@@ -7,7 +7,7 @@ module tt_um_alu_top_AlejandroPazG (
     output [7:0] uio_oe,
     input        ena,
     input        clk,
-    input        rst
+    input        rst_n
 );
 
     // Entradas codificadas en ui_in
